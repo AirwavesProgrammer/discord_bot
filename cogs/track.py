@@ -7,27 +7,6 @@ class Track(commands.Cog):
 
     @commands.command()
     async def track(self, ctx, url: str, preis: float):
-        conn = sqlite3.connect("database.db")
-        cursor = conn.cursor()
-
-        cursor.execute(
-            "INSERT INTO products (url, target_price) VALUES (?, ?)",
-            (url, preis)
-        )
-        conn.commit()
-        conn.close()
-
-        await ctx.send(f"Produkt gespeichert!\nURL: {url}\nZielpreis: {preis}€")
-
-        from discord.ext import commands
-import sqlite3
-
-class Track(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    @commands.command()
-    async def track(self, ctx, url: str, preis: float):
         """Speichert ein Produkt mit Zielpreis in der Datenbank."""
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
