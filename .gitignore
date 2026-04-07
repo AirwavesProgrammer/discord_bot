@@ -1,0 +1,14 @@
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+bot-env/
+venv/
+env/
+
+config.py
+
+*.log
