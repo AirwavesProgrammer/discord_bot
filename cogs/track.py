@@ -1,5 +1,6 @@
 from discord.ext import commands
 import sqlite3
+from services.portfolio_checker import get_stock_price  # Importiere get_stock_price
 
 class Track(commands.Cog):
     def __init__(self, bot):
@@ -57,5 +58,12 @@ class Track(commands.Cog):
 
         await ctx.send(f"Produkt entfernt:\nURL: {url}\nID: {product_id}")
 
+    @commands.command()
+    async def aktie(self, ctx, symbol: str):
+        """Zeigt den aktuellen Aktienkurs eines Symbols."""
+        price = get_stock_price(symbol)
+        await ctx.send(price)
+
+# Setup-Funktion zum Laden der Cog
 async def setup(bot):
     await bot.add_cog(Track(bot))
